@@ -1,0 +1,25 @@
+---
+# tasks file for webservers
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: latest
+    update_cache: yes
+
+- name: Nginx should be running
+  service:
+    name: nginx
+    state: started
+    enabled: true
+
+- name: Copy server1.html to nginx root directory on web01
+  copy:
+    src: server1.txt
+    dest: /var/www/html/index.html
+  when: inventory_hostname == 'web01'
+
+- name: Copy server2.html to nginx root directory on web02
+  copy:
+    src: server2.txt
+    dest: /var/www/html/index.html
+  when: inventory_hostname == 'web02'

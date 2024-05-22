@@ -1,0 +1,19 @@
+---
+# tasks file for loadbalancer
+- name: Install haproxy
+  apt:
+    name: haproxy
+    state: latest
+
+- name: Ensure haproxy is enabled and started
+  service:
+    name: haproxy
+    state: started
+    enabled: yes
+
+- name: Deploy haproxy configuration
+  copy:
+    src: haproxy.cfg
+    dest: /etc/haproxy/haproxy.cfg
+  notify:
+    - Restart haproxy

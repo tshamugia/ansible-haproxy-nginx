@@ -1,0 +1,6 @@
+[web]
+web01 ansible_host=192.168.77.32 ansible_user=vagrant
+web02 ansible_host=192.168.77.33 ansible_user=vagrant
+
+[lb]
+lb1 ansible_host=192.168.77.31 ansible_user=vagrant

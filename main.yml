@@ -1,0 +1,6 @@
+- hosts: all
+  become: true
+  roles:
+    - create_ssh_user
+    - { role: webservers, when: "'web' in group_names"}
+    - { role: loadbalancer, when: "'lb' in group_names"}

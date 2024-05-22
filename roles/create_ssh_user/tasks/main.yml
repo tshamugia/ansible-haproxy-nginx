@@ -1,0 +1,14 @@
+---
+# tasks file for create_ssh_user
+- name: Ensure devops user exists
+  user:
+    name: "{{ USER }}"
+    state: present
+    groups: sudo
+
+- name: Add SSH keys for devops user
+  authorized_key:
+    user: "{{ USER }}"
+    state: present
+    key: "{{ item }}"
+  with_items: "{{ SSH_KEY }}"
